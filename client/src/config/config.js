@@ -7,7 +7,7 @@ let base_url = ''
 if (mode === production) {
     base_url = ""
 } else {
-    base_url = 'http://localhost:3000'
+    base_url = 'http://localhost:3000/api/v1'
 }
 
 export { base_url }

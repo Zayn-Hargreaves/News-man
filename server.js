@@ -1,13 +1,12 @@
 const express = require('express')
 const app = express()
 const dotenv = require('dotenv')
-const body_parser = require('body-parser')
 const cors = require('cors')
 const path = require('path')
-
+const helmet = require("helmet")
+const compression = require("compression")
 dotenv.config()
 
-app.use(body_parser.json())
 
 require("./dbs/association")();
 
@@ -20,7 +19,13 @@ if (process.env.mode === 'production') {
         origin: ["http://localhost:5173", "http://localhost:3000"]
     }))
 }
-app.get('/', (req, res) => res.send('Hello World!'))
+app.use(express.json())
+app.use(express.urlencoded({ extended: true })); 
+app.use(helmet())
+app.use(compression())
+app.use("/api/v1/admin", require("./routes/admin/index"))
+app.use("/api/v1", require("./routes/client"))
+app.get('/', (req, res) => console.log(req.body))
 
 const port = process.env.port
 

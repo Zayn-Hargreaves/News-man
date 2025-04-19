@@ -1,24 +1,21 @@
-const { DataTypes, Model, Op } = require("sequelize-cockroachdb")
+const { DataTypes, Model, Op } = require("@sequelize/core")
 const database = require("../dbs/db");
 const Account = require("./Account.model");
 const sequelize = database.sequelize
 const KeyAdmin = sequelize.define("KeyAdmin", {
     id: {
-        type: DataTypes.UUID,
-        default: DataTypes.UUIDV4,
-        primaryKey: true
+        type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true
     },
     publicKey:{
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false
     },
     refreshToken:{
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false
     },
     AccountId:{
-        type:DataTypes.UUID,
-        default: DataTypes.UUIDV4,
+        type:DataTypes.INTEGER,
         references:{
             model:Account,
             key:"id"
@@ -26,7 +23,6 @@ const KeyAdmin = sequelize.define("KeyAdmin", {
     },
 },{
     freezeTableName:true,
-    paranoid:true,
     timestamps:true
 })
 

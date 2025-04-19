@@ -1,13 +1,11 @@
-const { DataTypes, Model, Op } = require("sequelize-cockroachdb")
-const Role = require("./Role.model");
+const { DataTypes, Model, Op } = require("@sequelize/core")
+const Role = require("./RoleAdmin.model");
 const Category = require("./Category.model");
 const database = require("../dbs/db");
 const sequelize = database.sequelize
 const Account = sequelize.define("Account", {
     id: {
-        type: DataTypes.UUID,
-        default: DataTypes.UUIDV4,
-        primaryKey: true
+        type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true
     },
     name: {
         type: DataTypes.STRING,
@@ -21,20 +19,21 @@ const Account = sequelize.define("Account", {
         type: DataTypes.STRING,
         allowNull: false
     },
-    Status:{
+    status:{
         type:DataTypes.STRING,
     },
+    avatar:{
+        type:DataTypes.STRING(2048),
+    },
     CategoryId:{
-        type:DataTypes.UUID,
-        default: DataTypes.UUIDV4,
+        type:DataTypes.INTEGER,
         references:{
             model:Category,
             key:"id"
         }
     },
     RoleId:{
-        type:DataTypes.UUID,
-        default: DataTypes.UUIDV4,
+        type:DataTypes.INTEGER,
         references:{
             model:Role,
             key:"id"

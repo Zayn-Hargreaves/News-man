@@ -1,14 +1,13 @@
-const { DataTypes, Model, Op } = require("sequelize-cockroachdb")
+const { DataTypes, Model, Op } = require("@sequelize/core")
 const {sequelize} = require("../dbs/db")
 const slugify = require("slugify")
 const Source = sequelize.define("Source", {
     id: {
-        type: DataTypes.UUID,
-        default: DataTypes.UUIDV4,
-        primaryKey: true
+        type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true
     },
     name: {
         type: DataTypes.STRING,
+        unique:true,
         allowNull: false
     },
     status: {
@@ -18,18 +17,20 @@ const Source = sequelize.define("Source", {
     link: {
         type: DataTypes.STRING(2048),
         allowNull: false,
+        unique:true,
         validate: {
             isUrl: true
         }
     },
+    avatar:{
+        type:DataTypes.STRING(2048),
+    },
     slug: {
         type: DataTypes.STRING,
-        allowNull: false,
         unique: true
     }
 },{
     freezeTableName:true,
-    paranoid:true,
     timestamps:true
 })
 

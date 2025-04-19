@@ -1,20 +1,18 @@
-const { DataTypes } = require("sequelize-cockroachdb");
+const { DataTypes } = require("@sequelize/core");
 const database = require("../dbs/db");
 const User = require("./User.model");
 const sequelize = database.sequelize;
 
 const PasswordResetRequest = sequelize.define("PasswordResetRequest", {
     id: {
-        type: DataTypes.UUID,
-        default: DataTypes.UUIDV4,
-        primaryKey: true,
+        type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true
     },
     email: {
         type: DataTypes.STRING,
         allowNull: false,
     },
     UserId: {
-        type: DataTypes.UUID,
+        type: DataTypes.INTEGER,
         allowNull: false,
         references: {
             model: User,

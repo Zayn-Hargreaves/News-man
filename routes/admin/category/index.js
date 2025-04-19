@@ -1,0 +1,10 @@
+const router = require("express").Router()
+const { asyncHandler } = require('../../../helpers/asyncHandler')
+const CategoryController = require("../../../controllers/admin/categoryController")
+router.get('/', asyncHandler(CategoryController.getListCategory))
+router.get('/tree', asyncHandler(CategoryController.getTreeCategory))
+router.post('/create',asyncHandler(CategoryController.addCategory))
+router.patch('/edit/:id',asyncHandler(CategoryController.updateCategory))
+router.get('/detail/:id', asyncHandler(CategoryController.getCategoryDetail))
+router.put('/change-status/:id/:status', asyncHandler(CategoryController.changeStatus))
+module.exports = router

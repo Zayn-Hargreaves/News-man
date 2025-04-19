@@ -1,10 +1,8 @@
-const { DataTypes, Model, Op } = require("sequelize-cockroachdb")
+const { DataTypes, Model, Op } = require("@sequelize/core")
 const {sequelize} = require("../dbs/db")
 const User = sequelize.define("User", {
     id: {
-        type: DataTypes.UUID,
-        default: DataTypes.UUIDV4,
-        primaryKey: true
+        type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true
     },
     name: {
         type: DataTypes.STRING,

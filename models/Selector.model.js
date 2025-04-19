@@ -1,13 +1,11 @@
-const { DataTypes, Model, Op } = require("sequelize-cockroachdb")
+const { DataTypes, Model, Op } = require("@sequelize/core")
 const database = require("../dbs/db")
 const Source = require("./Source.model")
 const sequelize = database.sequelize
 
 const Selector = sequelize.define("Selector",{
     id: {
-        type: DataTypes.UUID,
-        default: DataTypes.UUIDV4,
-        primaryKey: true
+        type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true
     },
     selector:{
         type:DataTypes.STRING,
@@ -17,8 +15,7 @@ const Selector = sequelize.define("Selector",{
         type:DataTypes.TEXT
     },
     SourceId:{
-        type:DataTypes.UUID,
-        default: DataTypes.UUIDV4,
+        type:DataTypes.INTEGER,
         references:{
             model:Source,
             key:"id"

@@ -1,23 +1,24 @@
-const { DataTypes, Model, Op } = require("sequelize-cockroachdb")
+const { DataTypes, Model, Op } = require("@sequelize/core")
 const {sequelize} = require("../dbs/db")
 const Source = require("./Source.model")
 const Category = require("./Category.model")
 const Article = sequelize.define("Article", {
     id: {
-        type: DataTypes.UUID,
-        default: DataTypes.UUIDV4,
-        primaryKey: true
+        type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true
+    },
+    thumbnail:{
+        type:DataTypes.TEXT,
     },
     title: {
         type: DataTypes.STRING,
         allowNull: false
     },
+    description:{
+        type:DataTypes.TEXT
+    },
     content: {
         type: DataTypes.TEXT,
         allowNull: false,
-        validate: {
-            isUrl: true
-        }
     },
     status:{
         type: DataTypes.STRING,
@@ -29,16 +30,14 @@ const Article = sequelize.define("Article", {
         unique: true
     },
     SourceId:{
-        type:DataTypes.UUID,
-        default: DataTypes.UUIDV4,
+        type:DataTypes.INTEGER,    
         references:{
             model:Source,
             key:"id"
         }
     },
     CategoryId:{
-        type:DataTypes.UUID,
-        default: DataTypes.UUIDV4,
+        type:DataTypes.INTEGER,
         references:{
             model:Category,
             key:"id"

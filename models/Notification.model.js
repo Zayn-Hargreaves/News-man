@@ -1,4 +1,4 @@
-const { DataTypes, Model, Op } = require("sequelize-cockroachdb")
+const { DataTypes, Model, Op } = require("@sequelize/core")
 const database = require("../dbs/db");
 const User = require("./User.model");
 const Source = require("./Source.model");
@@ -6,9 +6,7 @@ const Source = require("./Source.model");
 const sequelize = database.sequelize
 const Notification = sequelize.define("Notification", {
     id: {
-        type: DataTypes.UUID,
-        default: DataTypes.UUIDV4,
-        primaryKey: true
+        type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true
     },
     message:{
         type:DataTypes.TEXT,
@@ -18,16 +16,14 @@ const Notification = sequelize.define("Notification", {
         type:DataTypes.BOOLEAN,
     },
     UserId:{
-        type:DataTypes.UUID,
-        default: DataTypes.UUIDV4,
+        type:DataTypes.INTEGER,
         references:{
             model:User,
             key:"id"
         }
     },
     SourceId:{
-        type:DataTypes.UUID,
-        default: DataTypes.UUIDV4,
+        type:DataTypes.INTEGER,
         references:{
             model:Source,
             key:"id"

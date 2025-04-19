@@ -1,21 +1,20 @@
-const { DataTypes, Model, Op } = require("sequelize-cockroachdb")
+const { DataTypes, Model, Op } = require("@sequelize/core")
 const database = require("../dbs/db")
-const Role = require("./Role.model")
-const Permission = require("./Permission.model")
+const Role = require("./RoleAdmin.model")
+const Permission = require("./PermissionAdmin.model")
 const sequelize = database.sequelize
 
 const RolePermission = sequelize.define("RolePermission",{
     RoleId:{
-        type:DataTypes.UUID,
-        default: DataTypes.UUIDV4,
+        type:DataTypes.INTEGER,
+  
         references:{
             model:Role,
             key:"id"
         }
     },
     PermissionId:{
-        type:DataTypes.UUID,
-        default: DataTypes.UUIDV4,
+        type:DataTypes.INTEGER,
         references:{
             model:Permission,
             key:"id"

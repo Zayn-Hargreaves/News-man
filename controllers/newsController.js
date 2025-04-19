@@ -339,7 +339,6 @@ class newsController {
         }
     }
     get_images = async (req, res) => {
-        console.log('okkasd')
         try {
             const images = await newsModel.aggregate([
                 {

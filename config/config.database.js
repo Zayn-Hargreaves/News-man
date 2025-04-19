@@ -8,7 +8,7 @@ const dev = {
     //     name:'dbDev'
     // }
     db:{
-        cockroachUrl:process.env.db_url
+        dbUrl:process.env.db_url
     }
 }
 const pro = {
@@ -21,7 +21,7 @@ const pro = {
     //     name:'dbProduct'
     // }
     db:{
-        cockroachUrl:process.env.db_url
+        dbUrl:process.env.db_url
     }
 }
 const config = {dev, pro};

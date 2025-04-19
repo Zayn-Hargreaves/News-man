@@ -7,7 +7,10 @@ class SuccessResponse {
     constructor(message, status, data = null) {
         this.message = message;
         this.status = status;
-        this.data = data;
+        this.metadata = data;
+    }
+    send(res, headers={}){
+        return res.status(this.status).json(this)
     }
 }
 

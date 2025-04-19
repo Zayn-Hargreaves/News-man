@@ -9,8 +9,8 @@ const MainLayout = () => {
             <Sidebar />
             <div className='ml-[250px] w-[calc(100vw-268px)] min-h-[100vh]'>
                 <Header />
-                <div className='p-4'>
-                    <div className='pt-[85px]'>
+                <div className='p-4 '>
+                    <div className='pt-[0px]'>
                         <Outlet />
                     </div>
                 </div>

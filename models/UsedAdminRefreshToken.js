@@ -1,21 +1,19 @@
-const { DataTypes, Model, Op } = require("sequelize-cockroachdb")
+const { DataTypes, Model, Op } = require("@sequelize/core")
 const database = require("../dbs/db")
 const Account = require("./Account.model")
 const sequelize = database.sequelize
 
 const UsedAdminRefreshToken = sequelize.define("UsedAdminRefreshToken", {
     id: {
-        type: DataTypes.UUID,
-        default: DataTypes.UUIDV4,
-        primaryKey: true
+        type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true
     },
     usedAdminRefreshTokenValue: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false
     },
-    KeyAdminId:{
-        type:DataTypes.UUID,
-        default: DataTypes.UUIDV4,
+    AccountId:{
+        type:DataTypes.INTEGER,
+      
         references:{
             model:Account,
             key:"id"

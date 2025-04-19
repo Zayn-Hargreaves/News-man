@@ -1,21 +1,18 @@
-const { DataTypes, Model, Op } = require("sequelize-cockroachdb")
+const { DataTypes, Model, Op } = require("@sequelize/core")
 const database = require("../dbs/db")
 const User = require("./User.model")
 const sequelize = database.sequelize
 
 const UsedUserRefreshToken = sequelize.define("UsedUserrefreshToken", {
     id: {
-        type: DataTypes.UUID,
-        default: DataTypes.UUIDV4,
-        primaryKey: true
+        type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true
     },
     usedUserRefreshTokenValue: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false
     },
-    KeyUserId:{
-        type:DataTypes.UUID,
-        default: DataTypes.UUIDV4,
+    UserId:{
+        type:DataTypes.INTEGER,
         references:{
             model:User,
             key:"id"
